@@ -36,3 +36,6 @@ day_of_month_landslides = day_of_month_landslides.dropna()
 
 # plot the day of the month
 sns.distplot(day_of_month_landslides, kde=False, bins=31)
+
+# Ploting dates
+# https://www.kaggle.com/residentmario/time-series-plotting-optional
