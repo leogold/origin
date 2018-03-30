@@ -17,3 +17,7 @@ kickstarters_2017 = pd.read_csv("../input/kickstarter-projects/ks-projects-20180
 
 # set seed for reproducibility
 np.random.seed(0)
+
+#The difference is that, in scaling, you're changing the range of your data
+#while in normalization you're changing the shape of the distribution of your data.
+
