@@ -1,0 +1,52 @@
+import np as NumPy
+import pd as Pandas
+
+import_data = pd.read_csv('.../data.csv')
+
+# set seed for reproducibility
+np.random.seed(0) 
+
+#look data
+import_data.head()
+import_data.sample(5)
+
+# get the number of missing data points per column
+missing_values_count = import_data.isnull().sum()
+
+# look at the # of missing points in the first ten columns
+missing_values_count[0:10]
+
+# how many total missing values do we have?
+total_cells = np.product(import_data.shape)
+total_missing_values = missing_values.sum()
+
+# percent of data that is missing
+(total_missing_values/total_cells) * 100
+
+# look at the # of missing points in specific columns
+missing_values_count_permits[['Column_A','Column_X']]
+
+# remove all the rows that contain a missing value
+import_data.dropna()
+
+# remove all columns with at least one missing value
+columns_with_na_dropped = nfl_data.dropna(axis=1)
+
+# just how much data did we lose?
+print("Columns in original dataset: %d \n" % nfl_data.shape[1])
+print("Columns with na's dropped: %d" % columns_with_na_dropped.shape[1])
+
+# get a small subset of the import_data dataset
+data_subset = import_data.samples(5)
+data_subset = import_data.loc[:, 'Column_c':'Column_e'].head()
+
+# replace all NA's with 0
+data_subset.fillna(0)
+
+# replace all NA's the value that comes directly after it in the same column, 
+# then replace all the reamining na's with 0
+data_subset.fillna(method='bfill', axis=0).fillna(0)
+
+
+
+
