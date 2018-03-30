@@ -39,3 +39,34 @@ sns.distplot(day_of_month_landslides, kde=False, bins=31)
 
 # Ploting dates
 # https://www.kaggle.com/residentmario/time-series-plotting-optional
+
+#  pick out date values that are not in the format of mm/dd/yyyy and transform them manually, 
+#  then parse the dates with format='%m/%d/%Y'.
+index = earthquakes['Date'].apply(lambda x: len(x) != len('mm/dd/yyyy'))
+for i in earthquakes.loc[index, ['Date']].index:
+    s = earthquakes.loc[i, 'Date']
+    earthquakes.loc[i, ['Date']] = '{}/{}/{}'.format(s[5:7], s[8:10], s[:4])
+earthquakes['date_parsed'] = pd.to_datetime(earthquakes['Date'], format='%m/%d/%Y')
+earthquakes['date_parsed'].dtype
+
+#Instead of dropping the records, you can convert the dates to the correct format before you parse
+cnt = 0
+numrec = earthquakes.shape[0]
+for i in range(0,numrec):
+    if len(earthquakes['Date'].iloc[i]) > 10: #Corrected "&gt;" from cut and paste transpose (3/28/2018-14:28 PDT)
+        year = earthquakes['Date'].iloc[i][:4]
+        month = earthquakes['Date'].iloc[i][5:7]
+        date = earthquakes['Date'].iloc[i][8:10]
+        newdate = month + '/' + date + '/' + year
+        earthquakes['Date'].iloc[i] = newdate
+        #print (tmpdf['Date'].iloc[i] + " " + year + month + date + " " + newdate)
+        cnt += 1
+print ("Corrected " + str(cnt) + " Records")
+
+# more elegant...
+for i in range(len(earthquakes.index)):
+    if len(earthquakes.iloc[i, 0])!= 10:
+        badString= earthquakes.iloc[i, 0][0:9]
+        earthquakes.iloc[i, 0] = badString[5:7]+'/'+badString[8:]+'/'+badString[0:4]
+        
+# Link https://codeburst.io/dealing-with-datetimes-like-a-pro-in-pandas-b80d3d808a7f
