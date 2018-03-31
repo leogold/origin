@@ -1,0 +1,16 @@
+# https://www.kaggle.com/leogold/univariate-plotting-with-pandas/edit
+
+reviews['province'].value_counts().head(10).plot.bar()
+
+(reviews['province'].value_counts().head(10) / len(reviews)).plot.bar()
+
+reviews['points'].value_counts().plot.bar()
+reviews['points'].value_counts().sort_index().plot.bar()
+
+reviews['points'].value_counts().sort_index().plot.line()
+
+reviews['points'].value_counts().sort_index().plot.area()
+
+reviews[reviews['price'] < 200]['price'].plot.hist()
+reviews['points'].plot.hist()
+
