@@ -42,7 +42,7 @@ matches = fuzzywuzzy.process.extract("d.i khan", cities, limit=10, scorer=fuzzyw
 matches
 
 
-
+########################
 # function to replace rows in the provided column of the provided dataframe
 # that match the provided string above the provided ratio with the provided string
 def replace_matches_in_column(df, column, string_to_match, min_ratio = 90):
@@ -64,7 +64,7 @@ def replace_matches_in_column(df, column, string_to_match, min_ratio = 90):
     
     # let us know the function's done
     print("All done!")
-    
+###############################
     
     
  # use the function we just wrote to replace close matches to "d.i khan" with "d.i khan"
